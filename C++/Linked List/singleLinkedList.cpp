@@ -70,6 +70,28 @@ public:
         }
         cout << temp->data << " deleted" << endl;
         Prevtemp->next = temp->next;
+        free(temp);
+        cout << "After Deleting : ";
+        display();
+    }
+
+    void reverseLinkedList()
+    {
+        if (head == NULL || head->next == NULL)
+            return;
+
+        Node *curr = head;
+        Node *prev = NULL;
+
+        while (curr != NULL)
+        {
+            Node *temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        head = prev;
+        cout << "After Reversing : ";
         display();
     }
 };
@@ -88,6 +110,7 @@ int main()
     list.display();
 
     list.deleteNode(3);
+    list.reverseLinkedList();
 
     return 0;
 }
